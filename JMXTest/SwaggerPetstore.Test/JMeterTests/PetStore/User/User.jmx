@@ -1,0 +1,908 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jmeterTestPlan version="1.2" properties="2.8" jmeter="2.13 r1665067">
+	<hashTree>
+		<TestPlan guiclass="TestPlanGui" testclass="TestPlan" testname="User Test Plan" enabled="true">
+			<stringProp name="TestPlan.comments"></stringProp>
+			<boolProp name="TestPlan.functional_mode">false</boolProp>
+			<boolProp name="TestPlan.serialize_threadgroups">false</boolProp>
+				<elementProp name="TestPlan.user_defined_variables" elementType="Arguments" guiclass="ArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
+					<collectionProp name="Arguments.arguments">
+						<elementProp name="host" elementType="Argument">
+							<stringProp name="Argument.name">host</stringProp>
+							<stringProp name="Argument.value">https://petstore.swagger.io/v2</stringProp>
+							<stringProp name="Argument.metadata">=</stringProp>
+						</elementProp>
+						<elementProp name="port" elementType="Argument">
+							<stringProp name="Argument.name">port</stringProp>
+							<stringProp name="Argument.value"></stringProp>
+							<stringProp name="Argument.metadata">=</stringProp>
+						</elementProp>
+					</collectionProp>
+				</elementProp>
+			<stringProp name="TestPlan.user_define_classpath"></stringProp>
+		</TestPlan>
+		<hashTree>
+		<TestFragmentController guiclass="TestFragmentControllerGui" testclass="TestFragmentController" testname="Test Fragment" enabled="true"/>
+		<hashTree>
+			<Arguments guiclass="ArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
+				<collectionProp name="Arguments.arguments">
+					<elementProp name="testCases" elementType="Argument">
+						<stringProp name="Argument.name">testCases</stringProp>
+						<stringProp name="Argument.value">${__P(testCases,1)}</stringProp>
+						<stringProp name="Argument.metadata">=</stringProp>
+					</elementProp>
+					<elementProp name="host" elementType="Argument">
+						<stringProp name="Argument.name">host</stringProp>
+						<stringProp name="Argument.value">${__P(host,)}</stringProp>
+						<stringProp name="Argument.metadata">=</stringProp>
+					</elementProp>
+					<elementProp name="port" elementType="Argument">
+						<stringProp name="Argument.name">port</stringProp>
+						<stringProp name="Argument.value">${__P(port,)}</stringProp>
+						<stringProp name="Argument.metadata">=</stringProp>
+					</elementProp>
+					
+					<elementProp name="testData.createUserFile" elementType="Argument">
+						<stringProp name="Argument.name">testData.createUserFile</stringProp>
+						<stringProp name="Argument.value">${__P(testData.createUserFile,\User\createUser.csv)}</stringProp>
+						<stringProp name="Argument.metadata">=</stringProp>
+					</elementProp>
+					
+					<elementProp name="testData.createUsersWithArrayInputFile" elementType="Argument">
+						<stringProp name="Argument.name">testData.createUsersWithArrayInputFile</stringProp>
+						<stringProp name="Argument.value">${__P(testData.createUsersWithArrayInputFile,\User\createUsersWithArrayInput.csv)}</stringProp>
+						<stringProp name="Argument.metadata">=</stringProp>
+					</elementProp>
+					
+					<elementProp name="testData.createUsersWithListInputFile" elementType="Argument">
+						<stringProp name="Argument.name">testData.createUsersWithListInputFile</stringProp>
+						<stringProp name="Argument.value">${__P(testData.createUsersWithListInputFile,\User\createUsersWithListInput.csv)}</stringProp>
+						<stringProp name="Argument.metadata">=</stringProp>
+					</elementProp>
+					
+					<elementProp name="testData.deleteUserFile" elementType="Argument">
+						<stringProp name="Argument.name">testData.deleteUserFile</stringProp>
+						<stringProp name="Argument.value">${__P(testData.deleteUserFile,\User\deleteUser.csv)}</stringProp>
+						<stringProp name="Argument.metadata">=</stringProp>
+					</elementProp>
+					
+					<elementProp name="testData.getUserByNameFile" elementType="Argument">
+						<stringProp name="Argument.name">testData.getUserByNameFile</stringProp>
+						<stringProp name="Argument.value">${__P(testData.getUserByNameFile,\User\getUserByName.csv)}</stringProp>
+						<stringProp name="Argument.metadata">=</stringProp>
+					</elementProp>
+					
+					<elementProp name="testData.loginUserFile" elementType="Argument">
+						<stringProp name="Argument.name">testData.loginUserFile</stringProp>
+						<stringProp name="Argument.value">${__P(testData.loginUserFile,\User\loginUser.csv)}</stringProp>
+						<stringProp name="Argument.metadata">=</stringProp>
+					</elementProp>
+					
+					<elementProp name="testData.logoutUserFile" elementType="Argument">
+						<stringProp name="Argument.name">testData.logoutUserFile</stringProp>
+						<stringProp name="Argument.value">${__P(testData.logoutUserFile,\User\logoutUser.csv)}</stringProp>
+						<stringProp name="Argument.metadata">=</stringProp>
+					</elementProp>
+					
+					<elementProp name="testData.updateUserFile" elementType="Argument">
+						<stringProp name="Argument.name">testData.updateUserFile</stringProp>
+						<stringProp name="Argument.value">${__P(testData.updateUserFile,\User\updateUser.csv)}</stringProp>
+						<stringProp name="Argument.metadata">=</stringProp>
+					</elementProp>
+					
+					<elementProp name="baseDir" elementType="Argument">
+             		 	<stringProp name="Argument.name">baseDir</stringProp>
+              			<stringProp name="Argument.value">${__BeanShell(import org.apache.jmeter.services.FileServer; FileServer.getFileServer().getBaseDir())}</stringProp>
+              			<stringProp name="Argument.metadata">=</stringProp>
+            		</elementProp>
+				</collectionProp>
+			</Arguments>
+			<hashTree/>
+			<ConfigTestElement guiclass="HttpDefaultsGui" testclass="ConfigTestElement" testname="HTTP Request Defaults" enabled="true">
+				<elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
+					<collectionProp name="Arguments.arguments"/>
+				</elementProp>
+				<stringProp name="HTTPSampler.domain">${host}</stringProp>
+				<stringProp name="HTTPSampler.port">${port}</stringProp>
+				<stringProp name="HTTPSampler.connect_timeout"></stringProp>
+				<stringProp name="HTTPSampler.response_timeout"></stringProp>
+				<stringProp name="HTTPSampler.protocol"></stringProp>
+				<stringProp name="HTTPSampler.contentEncoding"></stringProp>
+				<stringProp name="HTTPSampler.path"></stringProp>
+				<stringProp name="HTTPSampler.concurrentPool">4</stringProp>
+			</ConfigTestElement>
+			<hashTree/>
+			
+			<BeanShellSampler guiclass="BeanShellSamplerGui" testclass="BeanShellSampler" testname="BeanShell Sampler" enabled="true">
+        	<stringProp name="BeanShellSampler.query">import java.io.File;
+import java.io.FileReader;
+import java.io.LineNumberReader;
+import java.lang.*;
+
+try
+{
+
+
+String str = vars.get("baseDir");
+
+String replaced = str.replace("\\","/");
+
+String filePath = replaced +"/"+ "User" +"/"+ "createUser.csv";
+
+FileReader fileReader = new FileReader(new File(filePath));
+
+LineNumberReader lineReader = new LineNumberReader(fileReader);
+
+int linenumber = 0;
+while (lineReader.readLine() != null){
+   linenumber++;
+}
+linenumber--; // do not include header row
+props.put(&quot;createUser&quot;, Integer.toString(linenumber));
+lineReader.close();
+}
+catch(Exception ex)
+{
+
+}</stringProp>
+	        <stringProp name="BeanShellSampler.filename"></stringProp>
+	        <stringProp name="BeanShellSampler.parameters"></stringProp>
+	        <boolProp name="BeanShellSampler.resetInterpreter">false</boolProp>
+      	    </BeanShellSampler>
+      		<hashTree/>
+			<LoopController guiclass="LoopControlPanel" testclass="LoopController" testname="Loop Controller" enabled="true">
+		        <boolProp name="LoopController.continue_forever">true</boolProp>
+		        <stringProp name="LoopController.loops">${__P(createUser)}</stringProp>
+     		</LoopController>
+			<hashTree>
+			    <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="createUser" enabled="true">
+					<boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+						<elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
+							<collectionProp name="Arguments.arguments">
+							  <elementProp name="" elementType="HTTPArgument">
+					                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+					                <stringProp name="Argument.value">{
+  &quot;firstName&quot; : &quot;${firstName}&quot;,
+  &quot;lastName&quot; : &quot;${lastName}&quot;,
+  &quot;password&quot; : &quot;${password}&quot;,
+  &quot;userStatus&quot; : &quot;${userStatus}&quot;,
+  &quot;phone&quot; : &quot;${phone}&quot;,
+  &quot;id&quot; : &quot;${id}&quot;,
+  &quot;email&quot; : &quot;${email}&quot;,
+  &quot;username&quot; : &quot;${username}&quot;
+}</stringProp>
+					                <stringProp name="Argument.metadata">=</stringProp>
+	              			  </elementProp>
+							</collectionProp>
+						</elementProp>
+					<stringProp name="HTTPSampler.domain"></stringProp>
+					<stringProp name="HTTPSampler.port"></stringProp>
+					<stringProp name="HTTPSampler.connect_timeout"></stringProp>
+					<stringProp name="HTTPSampler.response_timeout"></stringProp>
+					<stringProp name="HTTPSampler.protocol"></stringProp>
+					<stringProp name="HTTPSampler.contentEncoding"></stringProp>
+					<stringProp name="HTTPSampler.path">/v2/user</stringProp>
+					<stringProp name="HTTPSampler.method">POST</stringProp>
+					<boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+					<boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+					<boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+					<boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+					<stringProp name="HTTPSampler.implementation">HttpClient3.1</stringProp>
+					<boolProp name="HTTPSampler.monitor">false</boolProp>
+					<stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+					<stringProp name="TestPlan.comments">Create user This can only be done by the logged in user.</stringProp>
+				</HTTPSamplerProxy>
+				<hashTree>
+					<HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
+					<collectionProp name="HeaderManager.headers">
+					</collectionProp>
+					</HeaderManager>
+					<hashTree/>
+					<CSVDataSet guiclass="TestBeanGUI" testclass="CSVDataSet" testname="Load CSV Test Data - createUser" enabled="true">
+						<stringProp name="delimiter">,</stringProp>
+						<stringProp name="fileEncoding"></stringProp>
+						<stringProp name="filename">${testData.createUserFile}</stringProp>
+						<boolProp name="quotedData">true</boolProp>
+						<boolProp name="recycle">true</boolProp>
+						<stringProp name="shareMode">shareMode.all</stringProp>
+						<boolProp name="stopThread">false</boolProp>
+						<stringProp name="variableNames"></stringProp>
+					</CSVDataSet>
+					<hashTree/>
+					<ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="HTTP Status Assertion" enabled="true">
+					<collectionProp name="Asserion.test_strings">
+						<stringProp name="812696575">${httpStatusCode}</stringProp>
+					</collectionProp>
+						<stringProp name="Assertion.test_field">Assertion.response_code</stringProp>
+						<boolProp name="Assertion.assume_success">false</boolProp>
+						<intProp name="Assertion.test_type">8</intProp>
+					</ResponseAssertion>
+					<hashTree/>
+				</hashTree>
+			</hashTree>
+			
+			<BeanShellSampler guiclass="BeanShellSamplerGui" testclass="BeanShellSampler" testname="BeanShell Sampler" enabled="true">
+        	<stringProp name="BeanShellSampler.query">import java.io.File;
+import java.io.FileReader;
+import java.io.LineNumberReader;
+import java.lang.*;
+
+try
+{
+
+
+String str = vars.get("baseDir");
+
+String replaced = str.replace("\\","/");
+
+String filePath = replaced +"/"+ "User" +"/"+ "createUsersWithArrayInput.csv";
+
+FileReader fileReader = new FileReader(new File(filePath));
+
+LineNumberReader lineReader = new LineNumberReader(fileReader);
+
+int linenumber = 0;
+while (lineReader.readLine() != null){
+   linenumber++;
+}
+linenumber--; // do not include header row
+props.put(&quot;createUsersWithArrayInput&quot;, Integer.toString(linenumber));
+lineReader.close();
+}
+catch(Exception ex)
+{
+
+}</stringProp>
+	        <stringProp name="BeanShellSampler.filename"></stringProp>
+	        <stringProp name="BeanShellSampler.parameters"></stringProp>
+	        <boolProp name="BeanShellSampler.resetInterpreter">false</boolProp>
+      	    </BeanShellSampler>
+      		<hashTree/>
+			<LoopController guiclass="LoopControlPanel" testclass="LoopController" testname="Loop Controller" enabled="true">
+		        <boolProp name="LoopController.continue_forever">true</boolProp>
+		        <stringProp name="LoopController.loops">${__P(createUsersWithArrayInput)}</stringProp>
+     		</LoopController>
+			<hashTree>
+			    <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="createUsersWithArrayInput" enabled="true">
+					<boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+						<elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
+							<collectionProp name="Arguments.arguments">
+							  <elementProp name="" elementType="HTTPArgument">
+					                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+					                <stringProp name="Argument.value"></stringProp>
+					                <stringProp name="Argument.metadata">=</stringProp>
+	              			  </elementProp>
+							</collectionProp>
+						</elementProp>
+					<stringProp name="HTTPSampler.domain"></stringProp>
+					<stringProp name="HTTPSampler.port"></stringProp>
+					<stringProp name="HTTPSampler.connect_timeout"></stringProp>
+					<stringProp name="HTTPSampler.response_timeout"></stringProp>
+					<stringProp name="HTTPSampler.protocol"></stringProp>
+					<stringProp name="HTTPSampler.contentEncoding"></stringProp>
+					<stringProp name="HTTPSampler.path">/v2/user/createWithArray</stringProp>
+					<stringProp name="HTTPSampler.method">POST</stringProp>
+					<boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+					<boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+					<boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+					<boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+					<stringProp name="HTTPSampler.implementation">HttpClient3.1</stringProp>
+					<boolProp name="HTTPSampler.monitor">false</boolProp>
+					<stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+					<stringProp name="TestPlan.comments">Creates list of users with given input array </stringProp>
+				</HTTPSamplerProxy>
+				<hashTree>
+					<HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
+					<collectionProp name="HeaderManager.headers">
+					</collectionProp>
+					</HeaderManager>
+					<hashTree/>
+					<CSVDataSet guiclass="TestBeanGUI" testclass="CSVDataSet" testname="Load CSV Test Data - createUsersWithArrayInput" enabled="true">
+						<stringProp name="delimiter">,</stringProp>
+						<stringProp name="fileEncoding"></stringProp>
+						<stringProp name="filename">${testData.createUsersWithArrayInputFile}</stringProp>
+						<boolProp name="quotedData">true</boolProp>
+						<boolProp name="recycle">true</boolProp>
+						<stringProp name="shareMode">shareMode.all</stringProp>
+						<boolProp name="stopThread">false</boolProp>
+						<stringProp name="variableNames"></stringProp>
+					</CSVDataSet>
+					<hashTree/>
+					<ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="HTTP Status Assertion" enabled="true">
+					<collectionProp name="Asserion.test_strings">
+						<stringProp name="812696575">${httpStatusCode}</stringProp>
+					</collectionProp>
+						<stringProp name="Assertion.test_field">Assertion.response_code</stringProp>
+						<boolProp name="Assertion.assume_success">false</boolProp>
+						<intProp name="Assertion.test_type">8</intProp>
+					</ResponseAssertion>
+					<hashTree/>
+				</hashTree>
+			</hashTree>
+			
+			<BeanShellSampler guiclass="BeanShellSamplerGui" testclass="BeanShellSampler" testname="BeanShell Sampler" enabled="true">
+        	<stringProp name="BeanShellSampler.query">import java.io.File;
+import java.io.FileReader;
+import java.io.LineNumberReader;
+import java.lang.*;
+
+try
+{
+
+
+String str = vars.get("baseDir");
+
+String replaced = str.replace("\\","/");
+
+String filePath = replaced +"/"+ "User" +"/"+ "createUsersWithListInput.csv";
+
+FileReader fileReader = new FileReader(new File(filePath));
+
+LineNumberReader lineReader = new LineNumberReader(fileReader);
+
+int linenumber = 0;
+while (lineReader.readLine() != null){
+   linenumber++;
+}
+linenumber--; // do not include header row
+props.put(&quot;createUsersWithListInput&quot;, Integer.toString(linenumber));
+lineReader.close();
+}
+catch(Exception ex)
+{
+
+}</stringProp>
+	        <stringProp name="BeanShellSampler.filename"></stringProp>
+	        <stringProp name="BeanShellSampler.parameters"></stringProp>
+	        <boolProp name="BeanShellSampler.resetInterpreter">false</boolProp>
+      	    </BeanShellSampler>
+      		<hashTree/>
+			<LoopController guiclass="LoopControlPanel" testclass="LoopController" testname="Loop Controller" enabled="true">
+		        <boolProp name="LoopController.continue_forever">true</boolProp>
+		        <stringProp name="LoopController.loops">${__P(createUsersWithListInput)}</stringProp>
+     		</LoopController>
+			<hashTree>
+			    <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="createUsersWithListInput" enabled="true">
+					<boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+						<elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
+							<collectionProp name="Arguments.arguments">
+							  <elementProp name="" elementType="HTTPArgument">
+					                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+					                <stringProp name="Argument.value"></stringProp>
+					                <stringProp name="Argument.metadata">=</stringProp>
+	              			  </elementProp>
+							</collectionProp>
+						</elementProp>
+					<stringProp name="HTTPSampler.domain"></stringProp>
+					<stringProp name="HTTPSampler.port"></stringProp>
+					<stringProp name="HTTPSampler.connect_timeout"></stringProp>
+					<stringProp name="HTTPSampler.response_timeout"></stringProp>
+					<stringProp name="HTTPSampler.protocol"></stringProp>
+					<stringProp name="HTTPSampler.contentEncoding"></stringProp>
+					<stringProp name="HTTPSampler.path">/v2/user/createWithList</stringProp>
+					<stringProp name="HTTPSampler.method">POST</stringProp>
+					<boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+					<boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+					<boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+					<boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+					<stringProp name="HTTPSampler.implementation">HttpClient3.1</stringProp>
+					<boolProp name="HTTPSampler.monitor">false</boolProp>
+					<stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+					<stringProp name="TestPlan.comments">Creates list of users with given input array </stringProp>
+				</HTTPSamplerProxy>
+				<hashTree>
+					<HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
+					<collectionProp name="HeaderManager.headers">
+					</collectionProp>
+					</HeaderManager>
+					<hashTree/>
+					<CSVDataSet guiclass="TestBeanGUI" testclass="CSVDataSet" testname="Load CSV Test Data - createUsersWithListInput" enabled="true">
+						<stringProp name="delimiter">,</stringProp>
+						<stringProp name="fileEncoding"></stringProp>
+						<stringProp name="filename">${testData.createUsersWithListInputFile}</stringProp>
+						<boolProp name="quotedData">true</boolProp>
+						<boolProp name="recycle">true</boolProp>
+						<stringProp name="shareMode">shareMode.all</stringProp>
+						<boolProp name="stopThread">false</boolProp>
+						<stringProp name="variableNames"></stringProp>
+					</CSVDataSet>
+					<hashTree/>
+					<ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="HTTP Status Assertion" enabled="true">
+					<collectionProp name="Asserion.test_strings">
+						<stringProp name="812696575">${httpStatusCode}</stringProp>
+					</collectionProp>
+						<stringProp name="Assertion.test_field">Assertion.response_code</stringProp>
+						<boolProp name="Assertion.assume_success">false</boolProp>
+						<intProp name="Assertion.test_type">8</intProp>
+					</ResponseAssertion>
+					<hashTree/>
+				</hashTree>
+			</hashTree>
+			
+			<BeanShellSampler guiclass="BeanShellSamplerGui" testclass="BeanShellSampler" testname="BeanShell Sampler" enabled="true">
+        	<stringProp name="BeanShellSampler.query">import java.io.File;
+import java.io.FileReader;
+import java.io.LineNumberReader;
+import java.lang.*;
+
+try
+{
+
+
+String str = vars.get("baseDir");
+
+String replaced = str.replace("\\","/");
+
+String filePath = replaced +"/"+ "User" +"/"+ "deleteUser.csv";
+
+FileReader fileReader = new FileReader(new File(filePath));
+
+LineNumberReader lineReader = new LineNumberReader(fileReader);
+
+int linenumber = 0;
+while (lineReader.readLine() != null){
+   linenumber++;
+}
+linenumber--; // do not include header row
+props.put(&quot;deleteUser&quot;, Integer.toString(linenumber));
+lineReader.close();
+}
+catch(Exception ex)
+{
+
+}</stringProp>
+	        <stringProp name="BeanShellSampler.filename"></stringProp>
+	        <stringProp name="BeanShellSampler.parameters"></stringProp>
+	        <boolProp name="BeanShellSampler.resetInterpreter">false</boolProp>
+      	    </BeanShellSampler>
+      		<hashTree/>
+			<LoopController guiclass="LoopControlPanel" testclass="LoopController" testname="Loop Controller" enabled="true">
+		        <boolProp name="LoopController.continue_forever">true</boolProp>
+		        <stringProp name="LoopController.loops">${__P(deleteUser)}</stringProp>
+     		</LoopController>
+			<hashTree>
+			    <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="deleteUser" enabled="true">
+					<stringProp name="HTTPSampler.domain"></stringProp>
+					<stringProp name="HTTPSampler.port"></stringProp>
+					<stringProp name="HTTPSampler.connect_timeout"></stringProp>
+					<stringProp name="HTTPSampler.response_timeout"></stringProp>
+					<stringProp name="HTTPSampler.protocol"></stringProp>
+					<stringProp name="HTTPSampler.contentEncoding"></stringProp>
+					<stringProp name="HTTPSampler.path">/v2/user/${username}</stringProp>
+					<stringProp name="HTTPSampler.method">DELETE</stringProp>
+					<boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+					<boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+					<boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+					<boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+					<stringProp name="HTTPSampler.implementation">HttpClient3.1</stringProp>
+					<boolProp name="HTTPSampler.monitor">false</boolProp>
+					<stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+					<stringProp name="TestPlan.comments">Delete user This can only be done by the logged in user.</stringProp>
+				</HTTPSamplerProxy>
+				<hashTree>
+					<HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
+					<collectionProp name="HeaderManager.headers">
+					</collectionProp>
+					</HeaderManager>
+					<hashTree/>
+					<CSVDataSet guiclass="TestBeanGUI" testclass="CSVDataSet" testname="Load CSV Test Data - deleteUser" enabled="true">
+						<stringProp name="delimiter">,</stringProp>
+						<stringProp name="fileEncoding"></stringProp>
+						<stringProp name="filename">${testData.deleteUserFile}</stringProp>
+						<boolProp name="quotedData">true</boolProp>
+						<boolProp name="recycle">true</boolProp>
+						<stringProp name="shareMode">shareMode.all</stringProp>
+						<boolProp name="stopThread">false</boolProp>
+						<stringProp name="variableNames"></stringProp>
+					</CSVDataSet>
+					<hashTree/>
+					<ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="HTTP Status Assertion" enabled="true">
+					<collectionProp name="Asserion.test_strings">
+						<stringProp name="812696575">${httpStatusCode}</stringProp>
+					</collectionProp>
+						<stringProp name="Assertion.test_field">Assertion.response_code</stringProp>
+						<boolProp name="Assertion.assume_success">false</boolProp>
+						<intProp name="Assertion.test_type">8</intProp>
+					</ResponseAssertion>
+					<hashTree/>
+				</hashTree>
+			</hashTree>
+			
+			<BeanShellSampler guiclass="BeanShellSamplerGui" testclass="BeanShellSampler" testname="BeanShell Sampler" enabled="true">
+        	<stringProp name="BeanShellSampler.query">import java.io.File;
+import java.io.FileReader;
+import java.io.LineNumberReader;
+import java.lang.*;
+
+try
+{
+
+
+String str = vars.get("baseDir");
+
+String replaced = str.replace("\\","/");
+
+String filePath = replaced +"/"+ "User" +"/"+ "getUserByName.csv";
+
+FileReader fileReader = new FileReader(new File(filePath));
+
+LineNumberReader lineReader = new LineNumberReader(fileReader);
+
+int linenumber = 0;
+while (lineReader.readLine() != null){
+   linenumber++;
+}
+linenumber--; // do not include header row
+props.put(&quot;getUserByName&quot;, Integer.toString(linenumber));
+lineReader.close();
+}
+catch(Exception ex)
+{
+
+}</stringProp>
+	        <stringProp name="BeanShellSampler.filename"></stringProp>
+	        <stringProp name="BeanShellSampler.parameters"></stringProp>
+	        <boolProp name="BeanShellSampler.resetInterpreter">false</boolProp>
+      	    </BeanShellSampler>
+      		<hashTree/>
+			<LoopController guiclass="LoopControlPanel" testclass="LoopController" testname="Loop Controller" enabled="true">
+		        <boolProp name="LoopController.continue_forever">true</boolProp>
+		        <stringProp name="LoopController.loops">${__P(getUserByName)}</stringProp>
+     		</LoopController>
+			<hashTree>
+			    <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="getUserByName" enabled="true">
+					<stringProp name="HTTPSampler.domain"></stringProp>
+					<stringProp name="HTTPSampler.port"></stringProp>
+					<stringProp name="HTTPSampler.connect_timeout"></stringProp>
+					<stringProp name="HTTPSampler.response_timeout"></stringProp>
+					<stringProp name="HTTPSampler.protocol"></stringProp>
+					<stringProp name="HTTPSampler.contentEncoding"></stringProp>
+					<stringProp name="HTTPSampler.path">/v2/user/${username}</stringProp>
+					<stringProp name="HTTPSampler.method">GET</stringProp>
+					<boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+					<boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+					<boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+					<boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+					<stringProp name="HTTPSampler.implementation">HttpClient3.1</stringProp>
+					<boolProp name="HTTPSampler.monitor">false</boolProp>
+					<stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+					<stringProp name="TestPlan.comments">Get user by user name </stringProp>
+				</HTTPSamplerProxy>
+				<hashTree>
+					<HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
+					<collectionProp name="HeaderManager.headers">
+					</collectionProp>
+					</HeaderManager>
+					<hashTree/>
+					<CSVDataSet guiclass="TestBeanGUI" testclass="CSVDataSet" testname="Load CSV Test Data - getUserByName" enabled="true">
+						<stringProp name="delimiter">,</stringProp>
+						<stringProp name="fileEncoding"></stringProp>
+						<stringProp name="filename">${testData.getUserByNameFile}</stringProp>
+						<boolProp name="quotedData">true</boolProp>
+						<boolProp name="recycle">true</boolProp>
+						<stringProp name="shareMode">shareMode.all</stringProp>
+						<boolProp name="stopThread">false</boolProp>
+						<stringProp name="variableNames"></stringProp>
+					</CSVDataSet>
+					<hashTree/>
+					<ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="HTTP Status Assertion" enabled="true">
+					<collectionProp name="Asserion.test_strings">
+						<stringProp name="812696575">${httpStatusCode}</stringProp>
+					</collectionProp>
+						<stringProp name="Assertion.test_field">Assertion.response_code</stringProp>
+						<boolProp name="Assertion.assume_success">false</boolProp>
+						<intProp name="Assertion.test_type">8</intProp>
+					</ResponseAssertion>
+					<hashTree/>
+				</hashTree>
+			</hashTree>
+			
+			<BeanShellSampler guiclass="BeanShellSamplerGui" testclass="BeanShellSampler" testname="BeanShell Sampler" enabled="true">
+        	<stringProp name="BeanShellSampler.query">import java.io.File;
+import java.io.FileReader;
+import java.io.LineNumberReader;
+import java.lang.*;
+
+try
+{
+
+
+String str = vars.get("baseDir");
+
+String replaced = str.replace("\\","/");
+
+String filePath = replaced +"/"+ "User" +"/"+ "loginUser.csv";
+
+FileReader fileReader = new FileReader(new File(filePath));
+
+LineNumberReader lineReader = new LineNumberReader(fileReader);
+
+int linenumber = 0;
+while (lineReader.readLine() != null){
+   linenumber++;
+}
+linenumber--; // do not include header row
+props.put(&quot;loginUser&quot;, Integer.toString(linenumber));
+lineReader.close();
+}
+catch(Exception ex)
+{
+
+}</stringProp>
+	        <stringProp name="BeanShellSampler.filename"></stringProp>
+	        <stringProp name="BeanShellSampler.parameters"></stringProp>
+	        <boolProp name="BeanShellSampler.resetInterpreter">false</boolProp>
+      	    </BeanShellSampler>
+      		<hashTree/>
+			<LoopController guiclass="LoopControlPanel" testclass="LoopController" testname="Loop Controller" enabled="true">
+		        <boolProp name="LoopController.continue_forever">true</boolProp>
+		        <stringProp name="LoopController.loops">${__P(loginUser)}</stringProp>
+     		</LoopController>
+			<hashTree>
+			    <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="loginUser" enabled="true">
+					<elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
+						<collectionProp name="Arguments.arguments">
+							  <elementProp name="username" elementType="HTTPArgument">
+								<boolProp name="HTTPArgument.always_encode">false</boolProp>
+								<stringProp name="Argument.value">${username}</stringProp>
+								<stringProp name="Argument.metadata">=</stringProp>
+								<boolProp name="HTTPArgument.use_equals">true</boolProp>
+								<stringProp name="Argument.name">username</stringProp>
+							  </elementProp>
+							  <elementProp name="password" elementType="HTTPArgument">
+								<boolProp name="HTTPArgument.always_encode">false</boolProp>
+								<stringProp name="Argument.value">${password}</stringProp>
+								<stringProp name="Argument.metadata">=</stringProp>
+								<boolProp name="HTTPArgument.use_equals">true</boolProp>
+								<stringProp name="Argument.name">password</stringProp>
+							  </elementProp>
+						</collectionProp>
+					</elementProp>
+					<stringProp name="HTTPSampler.domain"></stringProp>
+					<stringProp name="HTTPSampler.port"></stringProp>
+					<stringProp name="HTTPSampler.connect_timeout"></stringProp>
+					<stringProp name="HTTPSampler.response_timeout"></stringProp>
+					<stringProp name="HTTPSampler.protocol"></stringProp>
+					<stringProp name="HTTPSampler.contentEncoding"></stringProp>
+					<stringProp name="HTTPSampler.path">/v2/user/login</stringProp>
+					<stringProp name="HTTPSampler.method">GET</stringProp>
+					<boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+					<boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+					<boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+					<boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+					<stringProp name="HTTPSampler.implementation">HttpClient3.1</stringProp>
+					<boolProp name="HTTPSampler.monitor">false</boolProp>
+					<stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+					<stringProp name="TestPlan.comments">Logs user into the system </stringProp>
+				</HTTPSamplerProxy>
+				<hashTree>
+					<HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
+					<collectionProp name="HeaderManager.headers">
+					</collectionProp>
+					</HeaderManager>
+					<hashTree/>
+					<CSVDataSet guiclass="TestBeanGUI" testclass="CSVDataSet" testname="Load CSV Test Data - loginUser" enabled="true">
+						<stringProp name="delimiter">,</stringProp>
+						<stringProp name="fileEncoding"></stringProp>
+						<stringProp name="filename">${testData.loginUserFile}</stringProp>
+						<boolProp name="quotedData">true</boolProp>
+						<boolProp name="recycle">true</boolProp>
+						<stringProp name="shareMode">shareMode.all</stringProp>
+						<boolProp name="stopThread">false</boolProp>
+						<stringProp name="variableNames"></stringProp>
+					</CSVDataSet>
+					<hashTree/>
+					<ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="HTTP Status Assertion" enabled="true">
+					<collectionProp name="Asserion.test_strings">
+						<stringProp name="812696575">${httpStatusCode}</stringProp>
+					</collectionProp>
+						<stringProp name="Assertion.test_field">Assertion.response_code</stringProp>
+						<boolProp name="Assertion.assume_success">false</boolProp>
+						<intProp name="Assertion.test_type">8</intProp>
+					</ResponseAssertion>
+					<hashTree/>
+				</hashTree>
+			</hashTree>
+			
+			<BeanShellSampler guiclass="BeanShellSamplerGui" testclass="BeanShellSampler" testname="BeanShell Sampler" enabled="true">
+        	<stringProp name="BeanShellSampler.query">import java.io.File;
+import java.io.FileReader;
+import java.io.LineNumberReader;
+import java.lang.*;
+
+try
+{
+
+
+String str = vars.get("baseDir");
+
+String replaced = str.replace("\\","/");
+
+String filePath = replaced +"/"+ "User" +"/"+ "logoutUser.csv";
+
+FileReader fileReader = new FileReader(new File(filePath));
+
+LineNumberReader lineReader = new LineNumberReader(fileReader);
+
+int linenumber = 0;
+while (lineReader.readLine() != null){
+   linenumber++;
+}
+linenumber--; // do not include header row
+props.put(&quot;logoutUser&quot;, Integer.toString(linenumber));
+lineReader.close();
+}
+catch(Exception ex)
+{
+
+}</stringProp>
+	        <stringProp name="BeanShellSampler.filename"></stringProp>
+	        <stringProp name="BeanShellSampler.parameters"></stringProp>
+	        <boolProp name="BeanShellSampler.resetInterpreter">false</boolProp>
+      	    </BeanShellSampler>
+      		<hashTree/>
+			<LoopController guiclass="LoopControlPanel" testclass="LoopController" testname="Loop Controller" enabled="true">
+		        <boolProp name="LoopController.continue_forever">true</boolProp>
+		        <stringProp name="LoopController.loops">${__P(logoutUser)}</stringProp>
+     		</LoopController>
+			<hashTree>
+			    <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="logoutUser" enabled="true">
+					<stringProp name="HTTPSampler.domain"></stringProp>
+					<stringProp name="HTTPSampler.port"></stringProp>
+					<stringProp name="HTTPSampler.connect_timeout"></stringProp>
+					<stringProp name="HTTPSampler.response_timeout"></stringProp>
+					<stringProp name="HTTPSampler.protocol"></stringProp>
+					<stringProp name="HTTPSampler.contentEncoding"></stringProp>
+					<stringProp name="HTTPSampler.path">/v2/user/logout</stringProp>
+					<stringProp name="HTTPSampler.method">GET</stringProp>
+					<boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+					<boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+					<boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+					<boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+					<stringProp name="HTTPSampler.implementation">HttpClient3.1</stringProp>
+					<boolProp name="HTTPSampler.monitor">false</boolProp>
+					<stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+					<stringProp name="TestPlan.comments">Logs out current logged in user session </stringProp>
+				</HTTPSamplerProxy>
+				<hashTree>
+					<HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
+					<collectionProp name="HeaderManager.headers">
+					</collectionProp>
+					</HeaderManager>
+					<hashTree/>
+					<CSVDataSet guiclass="TestBeanGUI" testclass="CSVDataSet" testname="Load CSV Test Data - logoutUser" enabled="true">
+						<stringProp name="delimiter">,</stringProp>
+						<stringProp name="fileEncoding"></stringProp>
+						<stringProp name="filename">${testData.logoutUserFile}</stringProp>
+						<boolProp name="quotedData">true</boolProp>
+						<boolProp name="recycle">true</boolProp>
+						<stringProp name="shareMode">shareMode.all</stringProp>
+						<boolProp name="stopThread">false</boolProp>
+						<stringProp name="variableNames"></stringProp>
+					</CSVDataSet>
+					<hashTree/>
+					<ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="HTTP Status Assertion" enabled="true">
+					<collectionProp name="Asserion.test_strings">
+						<stringProp name="812696575">${httpStatusCode}</stringProp>
+					</collectionProp>
+						<stringProp name="Assertion.test_field">Assertion.response_code</stringProp>
+						<boolProp name="Assertion.assume_success">false</boolProp>
+						<intProp name="Assertion.test_type">8</intProp>
+					</ResponseAssertion>
+					<hashTree/>
+				</hashTree>
+			</hashTree>
+			
+			<BeanShellSampler guiclass="BeanShellSamplerGui" testclass="BeanShellSampler" testname="BeanShell Sampler" enabled="true">
+        	<stringProp name="BeanShellSampler.query">import java.io.File;
+import java.io.FileReader;
+import java.io.LineNumberReader;
+import java.lang.*;
+
+try
+{
+
+
+String str = vars.get("baseDir");
+
+String replaced = str.replace("\\","/");
+
+String filePath = replaced +"/"+ "User" +"/"+ "updateUser.csv";
+
+FileReader fileReader = new FileReader(new File(filePath));
+
+LineNumberReader lineReader = new LineNumberReader(fileReader);
+
+int linenumber = 0;
+while (lineReader.readLine() != null){
+   linenumber++;
+}
+linenumber--; // do not include header row
+props.put(&quot;updateUser&quot;, Integer.toString(linenumber));
+lineReader.close();
+}
+catch(Exception ex)
+{
+
+}</stringProp>
+	        <stringProp name="BeanShellSampler.filename"></stringProp>
+	        <stringProp name="BeanShellSampler.parameters"></stringProp>
+	        <boolProp name="BeanShellSampler.resetInterpreter">false</boolProp>
+      	    </BeanShellSampler>
+      		<hashTree/>
+			<LoopController guiclass="LoopControlPanel" testclass="LoopController" testname="Loop Controller" enabled="true">
+		        <boolProp name="LoopController.continue_forever">true</boolProp>
+		        <stringProp name="LoopController.loops">${__P(updateUser)}</stringProp>
+     		</LoopController>
+			<hashTree>
+			    <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="updateUser" enabled="true">
+					<boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+						<elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
+							<collectionProp name="Arguments.arguments">
+							  <elementProp name="" elementType="HTTPArgument">
+					                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+					                <stringProp name="Argument.value">{
+  &quot;firstName&quot; : &quot;${firstName}&quot;,
+  &quot;lastName&quot; : &quot;${lastName}&quot;,
+  &quot;password&quot; : &quot;${password}&quot;,
+  &quot;userStatus&quot; : &quot;${userStatus}&quot;,
+  &quot;phone&quot; : &quot;${phone}&quot;,
+  &quot;id&quot; : &quot;${id}&quot;,
+  &quot;email&quot; : &quot;${email}&quot;,
+  &quot;username&quot; : &quot;${username}&quot;
+}</stringProp>
+					                <stringProp name="Argument.metadata">=</stringProp>
+	              			  </elementProp>
+							</collectionProp>
+						</elementProp>
+					<stringProp name="HTTPSampler.domain"></stringProp>
+					<stringProp name="HTTPSampler.port"></stringProp>
+					<stringProp name="HTTPSampler.connect_timeout"></stringProp>
+					<stringProp name="HTTPSampler.response_timeout"></stringProp>
+					<stringProp name="HTTPSampler.protocol"></stringProp>
+					<stringProp name="HTTPSampler.contentEncoding"></stringProp>
+					<stringProp name="HTTPSampler.path">/v2/user/${username}</stringProp>
+					<stringProp name="HTTPSampler.method">PUT</stringProp>
+					<boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+					<boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+					<boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+					<boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+					<stringProp name="HTTPSampler.implementation">HttpClient3.1</stringProp>
+					<boolProp name="HTTPSampler.monitor">false</boolProp>
+					<stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+					<stringProp name="TestPlan.comments">Updated user This can only be done by the logged in user.</stringProp>
+				</HTTPSamplerProxy>
+				<hashTree>
+					<HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
+					<collectionProp name="HeaderManager.headers">
+					</collectionProp>
+					</HeaderManager>
+					<hashTree/>
+					<CSVDataSet guiclass="TestBeanGUI" testclass="CSVDataSet" testname="Load CSV Test Data - updateUser" enabled="true">
+						<stringProp name="delimiter">,</stringProp>
+						<stringProp name="fileEncoding"></stringProp>
+						<stringProp name="filename">${testData.updateUserFile}</stringProp>
+						<boolProp name="quotedData">true</boolProp>
+						<boolProp name="recycle">true</boolProp>
+						<stringProp name="shareMode">shareMode.all</stringProp>
+						<boolProp name="stopThread">false</boolProp>
+						<stringProp name="variableNames"></stringProp>
+					</CSVDataSet>
+					<hashTree/>
+					<ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="HTTP Status Assertion" enabled="true">
+					<collectionProp name="Asserion.test_strings">
+						<stringProp name="812696575">${httpStatusCode}</stringProp>
+					</collectionProp>
+						<stringProp name="Assertion.test_field">Assertion.response_code</stringProp>
+						<boolProp name="Assertion.assume_success">false</boolProp>
+						<intProp name="Assertion.test_type">8</intProp>
+					</ResponseAssertion>
+					<hashTree/>
+				</hashTree>
+			</hashTree>
+			
+			</hashTree>
+		</hashTree>
+			<!-- end of operations -->
+	</hashTree>
+</jmeterTestPlan>

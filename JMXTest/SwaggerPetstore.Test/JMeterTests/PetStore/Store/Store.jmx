@@ -1,0 +1,469 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jmeterTestPlan version="1.2" properties="2.8" jmeter="2.13 r1665067">
+	<hashTree>
+		<TestPlan guiclass="TestPlanGui" testclass="TestPlan" testname="Store Test Plan" enabled="true">
+			<stringProp name="TestPlan.comments"></stringProp>
+			<boolProp name="TestPlan.functional_mode">false</boolProp>
+			<boolProp name="TestPlan.serialize_threadgroups">false</boolProp>
+				<elementProp name="TestPlan.user_defined_variables" elementType="Arguments" guiclass="ArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
+					<collectionProp name="Arguments.arguments">
+						<elementProp name="host" elementType="Argument">
+							<stringProp name="Argument.name">host</stringProp>
+							<stringProp name="Argument.value">https://petstore.swagger.io/v2</stringProp>
+							<stringProp name="Argument.metadata">=</stringProp>
+						</elementProp>
+						<elementProp name="port" elementType="Argument">
+							<stringProp name="Argument.name">port</stringProp>
+							<stringProp name="Argument.value"></stringProp>
+							<stringProp name="Argument.metadata">=</stringProp>
+						</elementProp>
+					</collectionProp>
+				</elementProp>
+			<stringProp name="TestPlan.user_define_classpath"></stringProp>
+		</TestPlan>
+		<hashTree>
+		<TestFragmentController guiclass="TestFragmentControllerGui" testclass="TestFragmentController" testname="Test Fragment" enabled="true"/>
+		<hashTree>
+			<Arguments guiclass="ArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
+				<collectionProp name="Arguments.arguments">
+					<elementProp name="testCases" elementType="Argument">
+						<stringProp name="Argument.name">testCases</stringProp>
+						<stringProp name="Argument.value">${__P(testCases,1)}</stringProp>
+						<stringProp name="Argument.metadata">=</stringProp>
+					</elementProp>
+					<elementProp name="host" elementType="Argument">
+						<stringProp name="Argument.name">host</stringProp>
+						<stringProp name="Argument.value">${__P(host,)}</stringProp>
+						<stringProp name="Argument.metadata">=</stringProp>
+					</elementProp>
+					<elementProp name="port" elementType="Argument">
+						<stringProp name="Argument.name">port</stringProp>
+						<stringProp name="Argument.value">${__P(port,)}</stringProp>
+						<stringProp name="Argument.metadata">=</stringProp>
+					</elementProp>
+					
+					<elementProp name="testData.deleteOrderFile" elementType="Argument">
+						<stringProp name="Argument.name">testData.deleteOrderFile</stringProp>
+						<stringProp name="Argument.value">${__P(testData.deleteOrderFile,\Store\deleteOrder.csv)}</stringProp>
+						<stringProp name="Argument.metadata">=</stringProp>
+					</elementProp>
+					
+					<elementProp name="testData.getInventoryFile" elementType="Argument">
+						<stringProp name="Argument.name">testData.getInventoryFile</stringProp>
+						<stringProp name="Argument.value">${__P(testData.getInventoryFile,\Store\getInventory.csv)}</stringProp>
+						<stringProp name="Argument.metadata">=</stringProp>
+					</elementProp>
+					
+					<elementProp name="testData.getOrderByIdFile" elementType="Argument">
+						<stringProp name="Argument.name">testData.getOrderByIdFile</stringProp>
+						<stringProp name="Argument.value">${__P(testData.getOrderByIdFile,\Store\getOrderById.csv)}</stringProp>
+						<stringProp name="Argument.metadata">=</stringProp>
+					</elementProp>
+					
+					<elementProp name="testData.placeOrderFile" elementType="Argument">
+						<stringProp name="Argument.name">testData.placeOrderFile</stringProp>
+						<stringProp name="Argument.value">${__P(testData.placeOrderFile,\Store\placeOrder.csv)}</stringProp>
+						<stringProp name="Argument.metadata">=</stringProp>
+					</elementProp>
+					
+					<elementProp name="baseDir" elementType="Argument">
+             		 	<stringProp name="Argument.name">baseDir</stringProp>
+              			<stringProp name="Argument.value">${__BeanShell(import org.apache.jmeter.services.FileServer; FileServer.getFileServer().getBaseDir())}</stringProp>
+              			<stringProp name="Argument.metadata">=</stringProp>
+            		</elementProp>
+				</collectionProp>
+			</Arguments>
+			<hashTree/>
+			<ConfigTestElement guiclass="HttpDefaultsGui" testclass="ConfigTestElement" testname="HTTP Request Defaults" enabled="true">
+				<elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
+					<collectionProp name="Arguments.arguments"/>
+				</elementProp>
+				<stringProp name="HTTPSampler.domain">${host}</stringProp>
+				<stringProp name="HTTPSampler.port">${port}</stringProp>
+				<stringProp name="HTTPSampler.connect_timeout"></stringProp>
+				<stringProp name="HTTPSampler.response_timeout"></stringProp>
+				<stringProp name="HTTPSampler.protocol"></stringProp>
+				<stringProp name="HTTPSampler.contentEncoding"></stringProp>
+				<stringProp name="HTTPSampler.path"></stringProp>
+				<stringProp name="HTTPSampler.concurrentPool">4</stringProp>
+			</ConfigTestElement>
+			<hashTree/>
+			
+			<BeanShellSampler guiclass="BeanShellSamplerGui" testclass="BeanShellSampler" testname="BeanShell Sampler" enabled="true">
+        	<stringProp name="BeanShellSampler.query">import java.io.File;
+import java.io.FileReader;
+import java.io.LineNumberReader;
+import java.lang.*;
+
+try
+{
+
+
+String str = vars.get("baseDir");
+
+String replaced = str.replace("\\","/");
+
+String filePath = replaced +"/"+ "Store" +"/"+ "deleteOrder.csv";
+
+FileReader fileReader = new FileReader(new File(filePath));
+
+LineNumberReader lineReader = new LineNumberReader(fileReader);
+
+int linenumber = 0;
+while (lineReader.readLine() != null){
+   linenumber++;
+}
+linenumber--; // do not include header row
+props.put(&quot;deleteOrder&quot;, Integer.toString(linenumber));
+lineReader.close();
+}
+catch(Exception ex)
+{
+
+}</stringProp>
+	        <stringProp name="BeanShellSampler.filename"></stringProp>
+	        <stringProp name="BeanShellSampler.parameters"></stringProp>
+	        <boolProp name="BeanShellSampler.resetInterpreter">false</boolProp>
+      	    </BeanShellSampler>
+      		<hashTree/>
+			<LoopController guiclass="LoopControlPanel" testclass="LoopController" testname="Loop Controller" enabled="true">
+		        <boolProp name="LoopController.continue_forever">true</boolProp>
+		        <stringProp name="LoopController.loops">${__P(deleteOrder)}</stringProp>
+     		</LoopController>
+			<hashTree>
+			    <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="deleteOrder" enabled="true">
+					<stringProp name="HTTPSampler.domain"></stringProp>
+					<stringProp name="HTTPSampler.port"></stringProp>
+					<stringProp name="HTTPSampler.connect_timeout"></stringProp>
+					<stringProp name="HTTPSampler.response_timeout"></stringProp>
+					<stringProp name="HTTPSampler.protocol"></stringProp>
+					<stringProp name="HTTPSampler.contentEncoding"></stringProp>
+					<stringProp name="HTTPSampler.path">/v2/store/order/${orderId}</stringProp>
+					<stringProp name="HTTPSampler.method">DELETE</stringProp>
+					<boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+					<boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+					<boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+					<boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+					<stringProp name="HTTPSampler.implementation">HttpClient3.1</stringProp>
+					<boolProp name="HTTPSampler.monitor">false</boolProp>
+					<stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+					<stringProp name="TestPlan.comments">Delete purchase order by ID For valid response try integer IDs with positive integer value. Negative or non-integer values will generate API errors</stringProp>
+				</HTTPSamplerProxy>
+				<hashTree>
+					<HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
+					<collectionProp name="HeaderManager.headers">
+					</collectionProp>
+					</HeaderManager>
+					<hashTree/>
+					<CSVDataSet guiclass="TestBeanGUI" testclass="CSVDataSet" testname="Load CSV Test Data - deleteOrder" enabled="true">
+						<stringProp name="delimiter">,</stringProp>
+						<stringProp name="fileEncoding"></stringProp>
+						<stringProp name="filename">${testData.deleteOrderFile}</stringProp>
+						<boolProp name="quotedData">true</boolProp>
+						<boolProp name="recycle">true</boolProp>
+						<stringProp name="shareMode">shareMode.all</stringProp>
+						<boolProp name="stopThread">false</boolProp>
+						<stringProp name="variableNames"></stringProp>
+					</CSVDataSet>
+					<hashTree/>
+					<ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="HTTP Status Assertion" enabled="true">
+					<collectionProp name="Asserion.test_strings">
+						<stringProp name="812696575">${httpStatusCode}</stringProp>
+					</collectionProp>
+						<stringProp name="Assertion.test_field">Assertion.response_code</stringProp>
+						<boolProp name="Assertion.assume_success">false</boolProp>
+						<intProp name="Assertion.test_type">8</intProp>
+					</ResponseAssertion>
+					<hashTree/>
+				</hashTree>
+			</hashTree>
+			
+			<BeanShellSampler guiclass="BeanShellSamplerGui" testclass="BeanShellSampler" testname="BeanShell Sampler" enabled="true">
+        	<stringProp name="BeanShellSampler.query">import java.io.File;
+import java.io.FileReader;
+import java.io.LineNumberReader;
+import java.lang.*;
+
+try
+{
+
+
+String str = vars.get("baseDir");
+
+String replaced = str.replace("\\","/");
+
+String filePath = replaced +"/"+ "Store" +"/"+ "getInventory.csv";
+
+FileReader fileReader = new FileReader(new File(filePath));
+
+LineNumberReader lineReader = new LineNumberReader(fileReader);
+
+int linenumber = 0;
+while (lineReader.readLine() != null){
+   linenumber++;
+}
+linenumber--; // do not include header row
+props.put(&quot;getInventory&quot;, Integer.toString(linenumber));
+lineReader.close();
+}
+catch(Exception ex)
+{
+
+}</stringProp>
+	        <stringProp name="BeanShellSampler.filename"></stringProp>
+	        <stringProp name="BeanShellSampler.parameters"></stringProp>
+	        <boolProp name="BeanShellSampler.resetInterpreter">false</boolProp>
+      	    </BeanShellSampler>
+      		<hashTree/>
+			<LoopController guiclass="LoopControlPanel" testclass="LoopController" testname="Loop Controller" enabled="true">
+		        <boolProp name="LoopController.continue_forever">true</boolProp>
+		        <stringProp name="LoopController.loops">${__P(getInventory)}</stringProp>
+     		</LoopController>
+			<hashTree>
+			    <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="getInventory" enabled="true">
+					<stringProp name="HTTPSampler.domain"></stringProp>
+					<stringProp name="HTTPSampler.port"></stringProp>
+					<stringProp name="HTTPSampler.connect_timeout"></stringProp>
+					<stringProp name="HTTPSampler.response_timeout"></stringProp>
+					<stringProp name="HTTPSampler.protocol"></stringProp>
+					<stringProp name="HTTPSampler.contentEncoding"></stringProp>
+					<stringProp name="HTTPSampler.path">/v2/store/inventory</stringProp>
+					<stringProp name="HTTPSampler.method">GET</stringProp>
+					<boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+					<boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+					<boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+					<boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+					<stringProp name="HTTPSampler.implementation">HttpClient3.1</stringProp>
+					<boolProp name="HTTPSampler.monitor">false</boolProp>
+					<stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+					<stringProp name="TestPlan.comments">Returns pet inventories by status Returns a map of status codes to quantities</stringProp>
+				</HTTPSamplerProxy>
+				<hashTree>
+					<HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
+					<collectionProp name="HeaderManager.headers">
+					</collectionProp>
+					</HeaderManager>
+					<hashTree/>
+					<CSVDataSet guiclass="TestBeanGUI" testclass="CSVDataSet" testname="Load CSV Test Data - getInventory" enabled="true">
+						<stringProp name="delimiter">,</stringProp>
+						<stringProp name="fileEncoding"></stringProp>
+						<stringProp name="filename">${testData.getInventoryFile}</stringProp>
+						<boolProp name="quotedData">true</boolProp>
+						<boolProp name="recycle">true</boolProp>
+						<stringProp name="shareMode">shareMode.all</stringProp>
+						<boolProp name="stopThread">false</boolProp>
+						<stringProp name="variableNames"></stringProp>
+					</CSVDataSet>
+					<hashTree/>
+					<ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="HTTP Status Assertion" enabled="true">
+					<collectionProp name="Asserion.test_strings">
+						<stringProp name="812696575">${httpStatusCode}</stringProp>
+					</collectionProp>
+						<stringProp name="Assertion.test_field">Assertion.response_code</stringProp>
+						<boolProp name="Assertion.assume_success">false</boolProp>
+						<intProp name="Assertion.test_type">8</intProp>
+					</ResponseAssertion>
+					<hashTree/>
+				</hashTree>
+			</hashTree>
+			
+			<BeanShellSampler guiclass="BeanShellSamplerGui" testclass="BeanShellSampler" testname="BeanShell Sampler" enabled="true">
+        	<stringProp name="BeanShellSampler.query">import java.io.File;
+import java.io.FileReader;
+import java.io.LineNumberReader;
+import java.lang.*;
+
+try
+{
+
+
+String str = vars.get("baseDir");
+
+String replaced = str.replace("\\","/");
+
+String filePath = replaced +"/"+ "Store" +"/"+ "getOrderById.csv";
+
+FileReader fileReader = new FileReader(new File(filePath));
+
+LineNumberReader lineReader = new LineNumberReader(fileReader);
+
+int linenumber = 0;
+while (lineReader.readLine() != null){
+   linenumber++;
+}
+linenumber--; // do not include header row
+props.put(&quot;getOrderById&quot;, Integer.toString(linenumber));
+lineReader.close();
+}
+catch(Exception ex)
+{
+
+}</stringProp>
+	        <stringProp name="BeanShellSampler.filename"></stringProp>
+	        <stringProp name="BeanShellSampler.parameters"></stringProp>
+	        <boolProp name="BeanShellSampler.resetInterpreter">false</boolProp>
+      	    </BeanShellSampler>
+      		<hashTree/>
+			<LoopController guiclass="LoopControlPanel" testclass="LoopController" testname="Loop Controller" enabled="true">
+		        <boolProp name="LoopController.continue_forever">true</boolProp>
+		        <stringProp name="LoopController.loops">${__P(getOrderById)}</stringProp>
+     		</LoopController>
+			<hashTree>
+			    <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="getOrderById" enabled="true">
+					<stringProp name="HTTPSampler.domain"></stringProp>
+					<stringProp name="HTTPSampler.port"></stringProp>
+					<stringProp name="HTTPSampler.connect_timeout"></stringProp>
+					<stringProp name="HTTPSampler.response_timeout"></stringProp>
+					<stringProp name="HTTPSampler.protocol"></stringProp>
+					<stringProp name="HTTPSampler.contentEncoding"></stringProp>
+					<stringProp name="HTTPSampler.path">/v2/store/order/${orderId}</stringProp>
+					<stringProp name="HTTPSampler.method">GET</stringProp>
+					<boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+					<boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+					<boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+					<boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+					<stringProp name="HTTPSampler.implementation">HttpClient3.1</stringProp>
+					<boolProp name="HTTPSampler.monitor">false</boolProp>
+					<stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+					<stringProp name="TestPlan.comments">Find purchase order by ID For valid response try integer IDs with value &gt;&#x3D; 1 and &lt;&#x3D; 10. Other values will generated exceptions</stringProp>
+				</HTTPSamplerProxy>
+				<hashTree>
+					<HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
+					<collectionProp name="HeaderManager.headers">
+					</collectionProp>
+					</HeaderManager>
+					<hashTree/>
+					<CSVDataSet guiclass="TestBeanGUI" testclass="CSVDataSet" testname="Load CSV Test Data - getOrderById" enabled="true">
+						<stringProp name="delimiter">,</stringProp>
+						<stringProp name="fileEncoding"></stringProp>
+						<stringProp name="filename">${testData.getOrderByIdFile}</stringProp>
+						<boolProp name="quotedData">true</boolProp>
+						<boolProp name="recycle">true</boolProp>
+						<stringProp name="shareMode">shareMode.all</stringProp>
+						<boolProp name="stopThread">false</boolProp>
+						<stringProp name="variableNames"></stringProp>
+					</CSVDataSet>
+					<hashTree/>
+					<ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="HTTP Status Assertion" enabled="true">
+					<collectionProp name="Asserion.test_strings">
+						<stringProp name="812696575">${httpStatusCode}</stringProp>
+					</collectionProp>
+						<stringProp name="Assertion.test_field">Assertion.response_code</stringProp>
+						<boolProp name="Assertion.assume_success">false</boolProp>
+						<intProp name="Assertion.test_type">8</intProp>
+					</ResponseAssertion>
+					<hashTree/>
+				</hashTree>
+			</hashTree>
+			
+			<BeanShellSampler guiclass="BeanShellSamplerGui" testclass="BeanShellSampler" testname="BeanShell Sampler" enabled="true">
+        	<stringProp name="BeanShellSampler.query">import java.io.File;
+import java.io.FileReader;
+import java.io.LineNumberReader;
+import java.lang.*;
+
+try
+{
+
+
+String str = vars.get("baseDir");
+
+String replaced = str.replace("\\","/");
+
+String filePath = replaced +"/"+ "Store" +"/"+ "placeOrder.csv";
+
+FileReader fileReader = new FileReader(new File(filePath));
+
+LineNumberReader lineReader = new LineNumberReader(fileReader);
+
+int linenumber = 0;
+while (lineReader.readLine() != null){
+   linenumber++;
+}
+linenumber--; // do not include header row
+props.put(&quot;placeOrder&quot;, Integer.toString(linenumber));
+lineReader.close();
+}
+catch(Exception ex)
+{
+
+}</stringProp>
+	        <stringProp name="BeanShellSampler.filename"></stringProp>
+	        <stringProp name="BeanShellSampler.parameters"></stringProp>
+	        <boolProp name="BeanShellSampler.resetInterpreter">false</boolProp>
+      	    </BeanShellSampler>
+      		<hashTree/>
+			<LoopController guiclass="LoopControlPanel" testclass="LoopController" testname="Loop Controller" enabled="true">
+		        <boolProp name="LoopController.continue_forever">true</boolProp>
+		        <stringProp name="LoopController.loops">${__P(placeOrder)}</stringProp>
+     		</LoopController>
+			<hashTree>
+			    <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="placeOrder" enabled="true">
+					<boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+						<elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
+							<collectionProp name="Arguments.arguments">
+							  <elementProp name="" elementType="HTTPArgument">
+					                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+					                <stringProp name="Argument.value">{
+  &quot;petId&quot; : &quot;${petId}&quot;,
+  &quot;quantity&quot; : &quot;${quantity}&quot;,
+  &quot;id&quot; : &quot;${id}&quot;,
+  &quot;shipDate&quot; : &quot;${shipDate}&quot;,
+  &quot;complete&quot; : &quot;${complete}&quot;,
+  &quot;status&quot; : &quot;${status}&quot;
+}</stringProp>
+					                <stringProp name="Argument.metadata">=</stringProp>
+	              			  </elementProp>
+							</collectionProp>
+						</elementProp>
+					<stringProp name="HTTPSampler.domain"></stringProp>
+					<stringProp name="HTTPSampler.port"></stringProp>
+					<stringProp name="HTTPSampler.connect_timeout"></stringProp>
+					<stringProp name="HTTPSampler.response_timeout"></stringProp>
+					<stringProp name="HTTPSampler.protocol"></stringProp>
+					<stringProp name="HTTPSampler.contentEncoding"></stringProp>
+					<stringProp name="HTTPSampler.path">/v2/store/order</stringProp>
+					<stringProp name="HTTPSampler.method">POST</stringProp>
+					<boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+					<boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+					<boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+					<boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+					<stringProp name="HTTPSampler.implementation">HttpClient3.1</stringProp>
+					<boolProp name="HTTPSampler.monitor">false</boolProp>
+					<stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+					<stringProp name="TestPlan.comments">Place an order for a pet </stringProp>
+				</HTTPSamplerProxy>
+				<hashTree>
+					<HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
+					<collectionProp name="HeaderManager.headers">
+					</collectionProp>
+					</HeaderManager>
+					<hashTree/>
+					<CSVDataSet guiclass="TestBeanGUI" testclass="CSVDataSet" testname="Load CSV Test Data - placeOrder" enabled="true">
+						<stringProp name="delimiter">,</stringProp>
+						<stringProp name="fileEncoding"></stringProp>
+						<stringProp name="filename">${testData.placeOrderFile}</stringProp>
+						<boolProp name="quotedData">true</boolProp>
+						<boolProp name="recycle">true</boolProp>
+						<stringProp name="shareMode">shareMode.all</stringProp>
+						<boolProp name="stopThread">false</boolProp>
+						<stringProp name="variableNames"></stringProp>
+					</CSVDataSet>
+					<hashTree/>
+					<ResponseAssertion guiclass="AssertionGui" testclass="ResponseAssertion" testname="HTTP Status Assertion" enabled="true">
+					<collectionProp name="Asserion.test_strings">
+						<stringProp name="812696575">${httpStatusCode}</stringProp>
+					</collectionProp>
+						<stringProp name="Assertion.test_field">Assertion.response_code</stringProp>
+						<boolProp name="Assertion.assume_success">false</boolProp>
+						<intProp name="Assertion.test_type">8</intProp>
+					</ResponseAssertion>
+					<hashTree/>
+				</hashTree>
+			</hashTree>
+			
+			</hashTree>
+		</hashTree>
+			<!-- end of operations -->
+	</hashTree>
+</jmeterTestPlan>
